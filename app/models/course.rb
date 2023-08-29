@@ -11,4 +11,10 @@ class Course < ApplicationRecord
 
   has_many :teacher_assignments, dependent: :destroy
   has_many :teachers, through: :teacher_assignments
+  has_many :subjects, through: :teacher_assignments
+
+  has_many :enrollments, dependent: :destroy
+  has_many :students, through: :enrollments
+
+  has_many :exams, dependent: :destroy
 end

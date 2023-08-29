@@ -132,13 +132,14 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
+    nokogiri (1.15.3-x86_64-darwin)
+      racc (~> 1.4)
     nokogiri (1.15.3-x86_64-linux)
       racc (~> 1.4)
     parallel (1.23.0)
     parser (3.2.2.3)
       ast (~> 2.4.1)
       racc
-    pg (1.5.3)
     public_suffix (5.0.3)
     puma (5.6.6)
       nio4r (~> 2.0)
@@ -242,6 +243,10 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.6.4-x86_64-darwin)
+    sqlite3 (1.6.4-x86_64-linux)
+    tailwindcss-rails (2.0.30-x86_64-darwin)
+      railties (>= 6.0.0)
     tailwindcss-rails (2.0.30-x86_64-linux)
       railties (>= 6.0.0)
     thor (1.2.2)
@@ -262,6 +267,7 @@ GEM
     zeitwerk (2.6.11)
 
 PLATFORMS
+  x86_64-darwin-21
   x86_64-linux
 
 DEPENDENCIES
@@ -271,7 +277,6 @@ DEPENDENCIES
   factory_bot_rails (~> 6.2)
   ffaker (~> 2.21)
   foreman (~> 0.87.2)
-  pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.6)
   rspec-rails (~> 6.0)
@@ -284,12 +289,13 @@ DEPENDENCIES
   shoulda-matchers (~> 5.3)
   simplecov (~> 0.22.0)
   sprockets-rails
+  sqlite3
   tailwindcss-rails
   tzinfo-data
   web-console
 
 RUBY VERSION
-   ruby 3.1.4p223
+   ruby 3.2.2p53
 
 BUNDLED WITH
    2.4.17
