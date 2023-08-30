@@ -14,15 +14,18 @@ Style/Documentation:
   Enabled: false
 
 RSpec/ExampleLength:
-  Exclude: 
+  Exclude:
     - spec/views/**/*
 
 RSpec/NestedGroups:
   Max: 5
 
 RSpec/MultipleExpectations:
-  Exclude: 
+  Exclude:
     - spec/views/**/*
 
 RSpec/MultipleMemoizedHelpers:
   Max: 7
+
+Metrics/BlockLength:
+  Enabled: false
