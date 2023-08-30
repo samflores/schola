@@ -67,32 +67,31 @@ Grade.insert_all(grades2012.flatten)
 
 # Para os outros anos:
 
-(2013..2022).to_a.each do |year|  
-  
+(2013..2023).to_a.each do |year|
   # Criando os cursos do ano
   courses = (5..9).to_a.map do |grade|
-    { year: year, name: "#{grade}º ano", starts_on: "#{year}-01-01", ends_on: "#{year}-12-31" }
+    { year:, name: "#{grade}º ano", starts_on: "#{year}-01-01", ends_on: "#{year}-12-31" }
   end
 
   Course.insert_all(courses)
 
   # Matriculando alunos novos no 5º ano
   rand(20..40).times do
-    Course.where(year: year, name: '5º ano').first.enrollments.create!(code: SecureRandom.uuid,
-                                                                      student: FactoryBot.create(:student))
+    Course.where(year:, name: '5º ano').first.enrollments.create!(code: SecureRandom.uuid,
+                                                                  student: FactoryBot.create(:student))
   end
 
   # Criando matrícula do curso seguinte para os alunos do 5º ao 8º ano:
   enrollments = (5..8).to_a.map do |grade|
     Course.where(year: year - 1, name: "#{grade}º ano").first.students.map do |student|
       { code: SecureRandom.uuid, student_id: student.id,
-        course_id: Course.where(year: year, name: "#{grade + 1}º ano").first.id }
+        course_id: Course.where(year:, name: "#{grade + 1}º ano").first.id }
     end
   end
 
   Enrollment.insert_all(enrollments.flatten)
 
-  courses = Course.where(year: year)
+  courses = Course.where(year:)
 
   teacher_assignments = courses.map do |course|
     subjects.map do |subject|
@@ -114,11 +113,17 @@ Grade.insert_all(grades2012.flatten)
   grades = courses.map do |course|
     course.enrollments.map do |enrollment|
       course.exams.map do |exam|
-        exams = []
-        8.times do
-          exams.push({ value: rand(0..10), enrollment_code: enrollment.code, exam_id: exam.id })
+        grades_hashes = []
+        if year == 2023
+          4.times do
+            grades_hashes.push({ value: rand(0..10), enrollment_code: enrollment.code, exam_id: exam.id })
+          end
+        else
+          8.times do
+            grades_hashes.push({ value: rand(0..10), enrollment_code: enrollment.code, exam_id: exam.id })
+          end
         end
-        exams
+        grades_hashes
       end
     end
   end
