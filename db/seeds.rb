@@ -8,7 +8,6 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-# TODO: otimizar com insert_all
 require 'securerandom'
 
 %w[Matemática Português História Geografia Física Química Inglês].each { |subject| Subject.create!(name: subject) }
